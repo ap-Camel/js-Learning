@@ -1,0 +1,38 @@
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 4fr 1fr 4fr;
+    grid-gap: 1em;
+}
+
+.calculator {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 3px;
+    min-height: 200px;
+}
+
+.results {
+    display: grid;
+    grid-gap: 3px;
+}
+
+.calculator input {
+    grid-column: 1/5;
+}
+
+.calculator p {
+    grid-column: 1/5;
+}
+
+.seperator {
+    background-color: gray;
+}
+
+p {
+    background: gray;
+    margin: 0px;
+    border: 1px solid;
+    border-radius: 3px;
+}
+
