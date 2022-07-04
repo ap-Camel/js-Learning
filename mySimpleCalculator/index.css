@@ -26,6 +26,7 @@
 }
 
 .seperator {
+    display: grid;
     background-color: gray;
     border: 1px solid;
     border-radius: 3px;

@@ -7,6 +7,14 @@ var currentOperation = "n";
 
 var results = [];
 
+if(localStorage.getItem("results") === null || localStorage.getItem("results") === "") {
+    localStorage.setItem("results", JSON.stringify(results));
+} else {
+    results = JSON.parse(localStorage.getItem("results"));
+    render();
+}
+
+
 document.getElementById("btn01").addEventListener("click", () => {
     //result = parseFloat(result) + input.value;
     input.value += 1;
@@ -117,20 +125,31 @@ document.getElementById("btnDiv").addEventListener("click", () => {
     }
 })
 
-document.getElementById("btnEqual").addEventListener("click", () => {
-    results.push(result.innerText);
+function render() {
     let string = "";
     for(let i = results.length - 1; i >= 0 && i > results.length - 6; i--) {
         string += `<p> ${results[i]} </p>`
     }
     //console.log(string);
     document.getElementById("results").innerHTML = string;
+}
+
+document.getElementById("btnEqual").addEventListener("click", () => {
+    results.push(result.innerText);
+    render();
     result.innerText = temp;
+    localStorage.setItem("results", JSON.stringify(results));
 })
 
 document.getElementById("btnClear").addEventListener("click", () => {
     result.innerText = 0;
     temp = 0;
+})
+
+document.getElementById("btnClearStorage").addEventListener("click", () => {
+    localStorage.setItem("results", "");
+    results = [];
+    render();
 })
 
 function calculate() {
