@@ -1,7 +1,9 @@
 var input = document.getElementById("input01");
 var result = document.getElementById("p01");
 
-var temp = [];
+var tempArr = [];
+var temp = 0;
+var currentOperation = "n";
 
 var results = [];
 
@@ -52,11 +54,106 @@ document.getElementById("btn09").addEventListener("click", () => {
 
 document.getElementById("btnAdd").addEventListener("click", () => {
 
-    temp.push(input.value);
+    if(!(input.value === "" || input.value === " ")) {
+        currentOperation = "+";
+        calculate();
+        result.innerText += (" + " + input.value);
+        input.value = "";
+    }
+    
+
+    /*
+
+    temp += parseFloat(input.value);
+    input.value = "";
+    result.innerText = temp;
+
+    */
+
+
+    /*
+    tempArr.push(input.value);
     let string = "";
-    for(let i = 0; i < temp.length; i++) {
-        string += `${temp[i]} + `;
+    for(let i = 0; i < tempArr.length; i++) {
+        string += `${tempArr[i]} + `;
     }
     result.innerText = string;
     input.value = "";
+    */
 })
+
+
+document.getElementById("btnSub").addEventListener("click", () => {
+
+    if(!(input.value === "" || input.value === " ")) {
+        currentOperation = "-";
+        calculate();
+        result.innerText += (" - " + input.value);
+        input.value = "";
+    }
+
+    /*
+    temp -= parseFloat(input.value);
+    input.value = "";
+    result.innerText = temp;
+    */
+})
+
+document.getElementById("btnMul").addEventListener("click", () => {
+    if(!(input.value === "" || input.value === " ")) {
+        currentOperation = "*";
+        calculate();
+        result.innerText += (" * " + input.value);
+        input.value = "";
+    }
+})
+
+document.getElementById("btnDiv").addEventListener("click", () => {
+    if(!(input.value === "" || input.value === " ")) {
+        currentOperation = "/";
+        calculate();
+        result.innerText += (" / " + input.value);
+        input.value = "";
+    }
+})
+
+document.getElementById("btnEqual").addEventListener("click", () => {
+    results.push(result.innerText);
+    let string = "";
+    for(let i = results.length - 1; i >= 0 && i > results.length - 6; i--) {
+        string += `<p> ${results[i]} </p>`
+    }
+    //console.log(string);
+    document.getElementById("results").innerHTML = string;
+    result.innerText = temp;
+})
+
+document.getElementById("btnClear").addEventListener("click", () => {
+    result.innerText = 0;
+    temp = 0;
+})
+
+function calculate() {
+    switch(currentOperation) {
+        case "+":
+            temp += parseFloat(input.value);
+            //input.value = "";
+            //result.innerText = temp;
+        break;
+
+        case "-":
+            temp -= parseFloat(input.value);
+        break;
+
+        case "*":
+            temp *= parseFloat(input.value);
+        break;
+
+        case "/":
+            temp /= parseFloat(input.value);
+        break;
+
+        default:
+
+    }
+}
