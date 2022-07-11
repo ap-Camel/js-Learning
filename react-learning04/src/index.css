@@ -11,3 +11,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.toDo {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.toDo h4 {
+  justify-self: center;
+}
+
+.toDo button {
+  justify-self: center;
+  border-radius: 3px;
+  margin: 1em;
+}
+
+.addToDo {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.addToDo input {
+  justify-self: center;
+}
+
+.addToDo button {
+  justify-self: center;
+  border-radius: 3px;
+  margin: 1em;
+}
+
+.toDoList {
+  display: grid;
+  grid-template-columns: 1fr;
+}
