@@ -12,5 +12,4 @@ function ExactPerson() {
     );
 }
 
-
 export default ExactPerson;
