@@ -11,3 +11,49 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  padding: 1em;
+  row-gap: 1em;
+  background-color: aqua;
+  margin: 1em;
+  border-radius: 5px;
+  max-width: 400px;
+  width: 100%;
+  justify-self: center;
+}
+
+.login-container p {
+  justify-self: start;
+}
+
+.login-container button {
+  grid-column: 1/3;
+  width: 33%;
+  justify-self: center;
+  min-height: 2.5em;
+  font-size: medium;
+  background-color:beige;
+  border-radius: 7px;
+}
+
+.login-container a {
+  display:block;
+  text-align:center;
+  grid-column: 1/3;
+}
+
+.login-container input {
+  height: 50%;
+  align-self: center;
+  width: 75%;
+  justify-self: center;
+}
+
+.login-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
