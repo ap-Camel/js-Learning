@@ -1,9 +1,18 @@
 import React from 'react';
+import { Link, Navigate, useLocation } from 'react-router-dom';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser } from '../features/user/userSlice';
 
 
 function Login() {
 
     const [login, setLogin] = React.useState({ email: "", password: "" });
+
+    const user = useSelector(store => store.user);
+    const dispatch = useDispatch();
+
+    const location = useLocation();
 
     function handleForm(event) {
         //console.log(event);
@@ -27,19 +36,20 @@ function Login() {
             body: JSON.stringify(login)
         });
 
-        let text = "";
-        if(res.status === 200) {
-            text = await res.json();
-            console.log(text);
-        }
-
         switch(res.status) {
             case 200:
+                //let text = "";
+                const text = await res.json();
+
                 if(localStorage.getItem("jwt-Token") === null) {
                     localStorage.setItem("jwt-Token", "");
                 } else {
-                    localStorage.setItem("jwt-Token", text);
+                    localStorage.setItem("jwt-Token", text.token);
+                    // console.log(text.token);
                 }
+
+                localStorage.setItem("user", JSON.stringify(text.user))
+                dispatch(setUser(text.user));
             break;
             case 400:
                 alert("invalid credentials", "ok");
@@ -55,6 +65,7 @@ function Login() {
 
     return(
         <div className='login-div'>
+            {user.loggedIn && <Navigate to="/" state={{from: location}} replace={true} />}
             <form className='login-container' onSubmit={checkLogin}>
                 <p>email</p>
                 <input 
@@ -73,7 +84,7 @@ function Login() {
                     onChange={handleForm}
                     />
                 <button type='submit' >login</button>
-                <a href="">no account? login</a>
+                <Link to='/signup' > no account? signup</Link>
             </form>
         </div>
         

@@ -1,20 +1,38 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const initiaState = {
-
+const initialState = {
+    firstName: "",
+    lastName: "",
+    role: "",
+    email: "",
+    loggedIn: false
 }
 
-export const authenticateUser = createAsyncThunk("authenticateUser", async () => {
-    const res = await fetch("https://localhost:7068/users")
-})
+// export const authenticateUser = createAsyncThunk("authenticateUser", async () => {
+//     const res = await fetch("https://localhost:7068/users")
+// })
 
+// export const logUserIn = createAsyncThunk("user/logUserIn", (user) => {
+    
+// })
 
-const cartSlice = createSlice({
+const userSlice = createSlice({
     name: "user",
-    initiaState,
+    initialState,
     reducers: {
-        authenticateUser: () => {
-
+        setUser: (state, {payload}) => {
+            state.firstName = payload.firstName;
+            state.lastName = payload.lastName;
+            state.role = payload.userType;
+            state.email = payload.email;
+            state.loggedIn = true;
+        },
+        loggOut: (state, action) => {
+            state.loggedIn = false;
         }
     }
 })
+
+export const {setUser, loggOut} = userSlice.actions;
+
+export default userSlice.reducer;

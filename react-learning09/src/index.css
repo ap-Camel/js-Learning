@@ -52,6 +52,13 @@ code {
   justify-self: center;
 }
 
+.login-container select {
+  height: 50%;
+  align-self: center;
+  width: 50%;
+  justify-self: center;
+}
+
 .login-div {
   display: flex;
   align-items: center;
